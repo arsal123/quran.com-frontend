@@ -97,11 +97,10 @@ class SearchInput extends Component {
 
     return (
       <div className={`right-inner-addon searchinput ${className}`}>
-        <i className="ss-icon ss-search" onClick={this.search} />
+        <a tabIndex="-1" onClick={this.search}><i className="ss-icon ss-search" /></a>
         <input
           type="search"
           placeholder="Search"
-          ref="search"
           onFocus={() => this.setState({ showAutocomplete: true })}
           onBlur={() => this.setState({ showAutocomplete: false })}
           onKeyUp={this.search}

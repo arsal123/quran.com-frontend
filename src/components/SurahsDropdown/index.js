@@ -61,7 +61,7 @@ export default class SurahsDropdown extends Component {
           aria-expanded="false"
         >
           Surahs
-          <span className="caret"></span>
+          <span className="caret" />
         </button>
         <ul className="dropdown-menu" aria-labelledby="surahs-dropdown">
           {this.renderList()}

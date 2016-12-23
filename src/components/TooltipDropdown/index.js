@@ -24,7 +24,7 @@ export default class TooltipDropdown extends Component {
   }
 
   renderPopup() {
-    const { options: { tooltip }} = this.props;
+    const { options: { tooltip } } = this.props;
 
     return (
       <Popover id="TooltipDropdown" title="Tooltip display" className={style.popover}>
@@ -48,7 +48,7 @@ export default class TooltipDropdown extends Component {
     return (
       <OverlayTrigger trigger="click" placement="bottom" overlay={this.renderPopup()} rootClose>
         <a
-          href="#"
+          tabIndex="-1"
           className="text-color"
           data-metrics-event-name="TooltipDropdown"
         >

@@ -12,11 +12,12 @@ import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
-import Header from './Header';
 import Ayah from 'components/Ayah';
 import Loader from 'components/Loader';
 
 import { search } from 'redux/actions/search.js';
+
+import Header from './Header';
 
 const style = require('./style.scss');
 
@@ -28,7 +29,6 @@ class Search extends Component {
     page: PropTypes.number,
     size: PropTypes.number,
     from: PropTypes.number,
-    took: PropTypes.object,
     query: PropTypes.string,
     results: PropTypes.array,
     ayahs: PropTypes.object,
@@ -51,12 +51,12 @@ class Search extends Component {
     if (page !== selectedPage) {
       this.context.metrics.track(
         'Search',
-        {action: 'paginate', label: `${query} - ${selectedPage}`}
+        { action: 'paginate', label: `${query} - ${selectedPage}` }
       );
 
       return push({
         pathname: '/search',
-        query: {p: selectedPage, q: query}
+        query: { p: selectedPage, q: query }
       });
     }
 
@@ -74,7 +74,7 @@ class Search extends Component {
           <Grid>
             <Row>
               <Col md={6} className="text-uppercase">
-                {from}-{from + size - 1} OF
+                {from}-{(from + size) - 1} OF
                 <span className={style.colored}> {total} </span>
                 SEARCH RESULTS FOR:
                 <span className={style.colored}> {query}</span>
@@ -117,7 +117,7 @@ class Search extends Component {
 
     if (isErrored) {
       return (
-        <h3 className="text-center" style={{padding: '15%'}}>
+        <h3 className="text-center" style={{ padding: '15%' }}>
           Sorry, there was an error with your search.
         </h3>
       );
@@ -195,4 +195,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {push})(AsyncSearch);
+export default connect(mapStateToProps, { push })(AsyncSearch);

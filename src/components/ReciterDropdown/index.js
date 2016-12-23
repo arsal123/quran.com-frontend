@@ -209,7 +209,7 @@ export default class ReciterDropdown extends Component {
       <MenuItem
         key={slug.name.english}
         active={slug.id === options.audio}
-        onClick={() => onOptionChange({audio: slug.id})}
+        onClick={() => onOptionChange({ audio: slug.id })}
       >
         {slug.name.english}
       </MenuItem>

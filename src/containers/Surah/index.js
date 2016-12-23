@@ -1,3 +1,4 @@
+/* global window, document */
 import React, { Component, PropTypes } from 'react';
 import Link from 'react-router/lib/Link';
 // redux
@@ -10,7 +11,6 @@ import { push } from 'react-router-redux';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Navbar from 'react-bootstrap/lib/Navbar';
-const NavbarHeader = Navbar.Header;
 
 import Helmet from 'react-helmet';
 import Sidebar from 'components/Sidebar';
@@ -25,7 +25,6 @@ import ReciterDropdown from 'components/ReciterDropdown';
 import SurahsDropdown from 'components/SurahsDropdown';
 import VersesDropdown from 'components/VersesDropdown';
 import SurahInfo from 'components/SurahInfo';
-import Header from './Header';
 import Ayah from 'components/Ayah';
 import Line from 'components/Line';
 import SearchInput from 'components/SearchInput';
@@ -39,13 +38,17 @@ import scroller from 'utils/scroller';
 import makeHeadTags from 'helpers/makeHeadTags';
 import debug from 'helpers/debug';
 
-import { surahsConnect, surahInfoConnect, ayahsConnect } from './connect';
-
 import * as AudioActions from 'redux/actions/audioplayer.js';
 import * as AyahActions from 'redux/actions/ayahs.js';
 import * as BookmarkActions from 'redux/actions/bookmarks.js';
 import * as OptionsActions from 'redux/actions/options.js';
 import * as MediaActions from 'redux/actions/media.js';
+
+import { surahsConnect, surahInfoConnect, ayahsConnect } from './connect';
+
+import Header from './Header';
+
+const NavbarHeader = Navbar.Header;
 
 const style = require('./style.scss');
 
@@ -58,7 +61,6 @@ class Surah extends Component {
     lines: PropTypes.object.isRequired,
     isEndOfSurah: PropTypes.bool.isRequired,
     ayahIds: PropTypes.any,
-    currentWord: PropTypes.string,
     currentAyah: PropTypes.string,
     surahs: PropTypes.object.isRequired,
     bookmarks: PropTypes.object.isRequired,
@@ -68,8 +70,7 @@ class Surah extends Component {
     options: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
     ayahs: PropTypes.object,
-    isStarted: PropTypes.bool,
-    isPlaying: PropTypes.bool,
+    isPlaying: PropTypes.bool
   };
 
   state = {
@@ -140,7 +141,7 @@ class Surah extends Component {
   }
 
   handleOptionChange = (payload) => {
-    const {surah, options, actions} = this.props; // eslint-disable-line no-shadow, max-len
+    const { surah, options, actions } = this.props; // eslint-disable-line no-shadow, max-len
     const from = this.getFirst();
     const to = this.getLast();
 
@@ -189,8 +190,8 @@ class Surah extends Component {
 
     let size = 10;
 
-    if ((range[1] - range[0] + 1) < 10) {
-      size = range[1] - range[0] + 1;
+    if (((range[1] - range[0]) + 1) < 10) {
+      size = (range[1] - range[0]) + 1;
     }
 
     const from = range[1];
@@ -198,7 +199,7 @@ class Surah extends Component {
 
     if (!isEndOfSurah && !ayahIds.has(to)) {
       actions.ayah.load(surah.id, from, to, options).then(() => {
-        this.setState({lazyLoading: false});
+        this.setState({ lazyLoading: false });
         if (callback) {
           callback();
         }
@@ -212,7 +213,6 @@ class Surah extends Component {
     const { actions } = this.props; // eslint-disable-line no-shadow
 
     return actions.options.setOption(payload);
-
   }
 
   title() {
@@ -272,7 +272,7 @@ class Surah extends Component {
             {
               surah.id > 1 &&
                 <li className="previous">
-                  <Link to={`/${surah.id * 1 - 1}`}>
+                  <Link to={`/${(surah.id * 1) - 1}`}>
                     &larr; Previous Surah
                   </Link>
                 </li>
@@ -285,7 +285,7 @@ class Surah extends Component {
             {
               surah.id < 114 &&
                 <li className="next">
-                  <Link to={`/${surah.id * 1 + 1}`}>
+                  <Link to={`/${(surah.id * 1) + 1}`}>
                     Next Surah &rarr;
                   </Link>
                 </li>
@@ -387,7 +387,7 @@ class Surah extends Component {
     const { surah, options, ayahs, actions } = this.props; // eslint-disable-line no-shadow
     debug('component:Surah', 'Render');
 
-    if (!ayahs) return <div style={{ margin: '50px auto'}}><Loader /></div>;
+    if (!ayahs) return <div style={{ margin: '50px auto' }}><Loader /></div>;
 
     return (
       <div className="surah-body">
@@ -429,10 +429,10 @@ class Surah extends Component {
             }
           ]}
         />
-        <Header surah={surah} handleToggleSidebar={() => this.setState({sidebarOpen: true})} />
+        <Header surah={surah} handleToggleSidebar={() => this.setState({ sidebarOpen: true })} />
         <Sidebar
           open={this.state.sidebarOpen}
-          onSetOpen={(open) => this.setState({sidebarOpen: open})}
+          onSetOpen={open => this.setState({ sidebarOpen: open })}
         >
           {this.renderSidebar()}
         </Sidebar>

@@ -14,7 +14,7 @@ export class IndexHeaderNav extends Component {
   openNav(event) {
     event.preventDefault();
 
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   }
 
   links() {
@@ -29,7 +29,12 @@ export class IndexHeaderNav extends Component {
           </Link>
         </li>
         <li>
-          <a href="https://quran.zendesk.com/hc/en-us/articles/210090626-Development-help" target="_blank" data-metrics-event-name="IndexHeader:Link:Developer">
+          <a
+            href="https://quran.zendesk.com/hc/en-us/articles/210090626-Development-help"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-metrics-event-name="IndexHeader:Link:Developer"
+          >
             Developers
           </a>
         </li>

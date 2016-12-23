@@ -18,7 +18,12 @@ const Footer = () => (
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
               <li>
-                <a href="https://quran.zendesk.com/hc/en-us/articles/210090626-Development-help" target="_blank" data-metrics-event-name="Footer:Link:Developer">
+                <a
+                  href="https://quran.zendesk.com/hc/en-us/articles/210090626-Development-help"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-metrics-event-name="Footer:Link:Developer"
+                >
                   Developers
                 </a>
               </li>
@@ -27,11 +32,43 @@ const Footer = () => (
           <Col md={3} sm={4} xs={12} className={styles.links}>
             <p>Useful sites</p>
             <ul className={`source-sans ${styles.list}`}>
-              <li><a target="_blank" href="http://sunnah.com/" data-metrics-event-name="Footer:Link:Sunnah">Sunnah.com</a></li>
-              <li><a target="_blank" href="http://salah.com/" data-metrics-event-name="Footer:Link:Salah">Salah.com</a></li>
-              <li><a target="_blank" href="http://quranicaudio.com/" data-metrics-event-name="Footer:Link:QuranicAudio">QuranicAudio.com</a></li>
               <li>
-                <a target="_blank" href="http://corpus.quran.com/wordbyword.jsp" data-metrics-event-name="Footer:Link:Corpus">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://sunnah.com/"
+                  data-metrics-event-name="Footer:Link:Sunnah"
+                >
+                  Sunnah.com
+                </a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://salah.com/"
+                  data-metrics-event-name="Footer:Link:Salah"
+                >
+                  Salah.com
+                </a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://quranicaudio.com/"
+                  data-metrics-event-name="Footer:Link:QuranicAudio"
+                >
+                  QuranicAudio.com
+                </a>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://corpus.quran.com/wordbyword.jsp"
+                  data-metrics-event-name="Footer:Link:Corpus"
+                >
                   Corpus: Word by Word
                 </a>
               </li>

@@ -27,7 +27,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 try {
   Raven.config(config.sentryClient).install();
 } catch (error) {
-  console.log(error);
+  debug('client', error);
 }
 
 window.quranDebug = debug;
@@ -44,11 +44,10 @@ match({ history, routes: routes(store) }, (error, redirectLocation, renderProps)
   const component = (
     <Router
       {...renderProps}
-      render={(props) => (
+      render={props => (
         <ReduxAsyncConnect
           {...props}
           helpers={{ client }}
-          filter={item => !item.deferred}
           render={applyRouterMiddleware(useScroll())}
         />
       )}
